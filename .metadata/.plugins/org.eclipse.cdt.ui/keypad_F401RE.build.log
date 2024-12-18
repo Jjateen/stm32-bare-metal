@@ -1,0 +1,17 @@
+08:17:28 **** Build of configuration Debug for project keypad_F401RE ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F401RE -DSTM32 -DSTM32F401RETx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "keypad_F401RE.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\jjate\OneDrive\Desktop\stm32\keypad_F401RE\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="keypad_F401RE.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: keypad_F401RE.elf
+ 
+arm-none-eabi-size  keypad_F401RE.elf 
+arm-none-eabi-objdump -h -S keypad_F401RE.elf  > "keypad_F401RE.list"
+   text	   data	    bss	    dec	    hex	filename
+   5044	     92	   1900	   7036	   1b7c	keypad_F401RE.elf
+Finished building: default.size.stdout
+ 
+Finished building: keypad_F401RE.list
+ 
+
+08:17:28 Build Finished. 0 errors, 0 warnings. (took 393ms)
+

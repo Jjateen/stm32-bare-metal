@@ -1,0 +1,66 @@
+09:39:55 **** Incremental Build of configuration Debug for project UART_via_prefdefined_regs ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F401RE -DSTM32 -DSTM32F401RETx -DSTM32F4 -c -I../Inc -I"C:/Users/jjate/OneDrive/Desktop/stm32/Include/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+In file included from ../Src/main.c:3:
+../Inc/stm32f4xx.h:174:2: error: #error "Please select first the target STM32F4xx device used in your application (in stm32f4xx.h file)"
+  174 | #error "Please select first the target STM32F4xx device used in your application (in stm32f4xx.h file)"
+      |  ^~~~~
+../Src/main.c:23:31: error: unknown type name 'USART_TypeDef'
+   23 | static void uart_set_baudrate(USART_TypeDef *USARTx,uint32_t PeriphClk,uint32_t Baudrate);
+      |                               ^~~~~~~~~~~~~
+../Src/main.c: In function 'main':
+../Src/main.c:43:25: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   43 |                         printf("1 is pressed \n \r");
+      |                         ^~~~~~
+../Src/main.c:4:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    3 | #include"stm32f4xx.h"
+  +++ |+#include <stdio.h>
+    4 | #define STM32F401xE
+../Src/main.c:43:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   43 |                         printf("1 is pressed \n \r");
+      |                         ^~~~~~
+../Src/main.c:43:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Src/main.c:47:25: warning: incompatible implicit declaration of built-in function 'printf' [-Wbuiltin-declaration-mismatch]
+   47 |                         printf("2 is pressed \n \r");
+      |                         ^~~~~~
+../Src/main.c:47:25: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Src/main.c: In function 'uart2_rxtx_init':
+../Src/main.c:57:9: error: 'RCC' undeclared (first use in this function)
+   57 |         RCC->AHB1ENR |=GPIOAEN;
+      |         ^~~
+../Src/main.c:57:9: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:59:9: error: 'GPIOA' undeclared (first use in this function); did you mean 'GPIOAEN'?
+   59 |         GPIOA->MODER &=~(1U <<4);
+      |         ^~~~~
+      |         GPIOAEN
+../Src/main.c:84:1: warning: implicit declaration of function 'uart_set_baudrate' [-Wimplicit-function-declaration]
+   84 | uart_set_baudrate(USART2,APB1_CLK,UART_BAUDRATE);
+      | ^~~~~~~~~~~~~~~~~
+../Src/main.c:84:19: error: 'USART2' undeclared (first use in this function)
+   84 | uart_set_baudrate(USART2,APB1_CLK,UART_BAUDRATE);
+      |                   ^~~~~~
+../Src/main.c: In function 'uart2_read':
+../Src/main.c:99:17: error: 'USART2' undeclared (first use in this function)
+   99 |         while(!(USART2->SR  & SR_RXNE)){}
+      |                 ^~~~~~
+../Src/main.c: In function 'uart2_write':
+../Src/main.c:108:17: error: 'USART2' undeclared (first use in this function)
+  108 |         while(!(USART2->SR  & SR_TXE)){}
+      |                 ^~~~~~
+../Src/main.c: At top level:
+../Src/main.c:111:31: error: unknown type name 'USART_TypeDef'
+  111 | static void uart_set_baudrate(USART_TypeDef *USARTx,uint32_t PeriphClk,uint32_t Baudrate)
+      |                               ^~~~~~~~~~~~~
+../Src/main.c: In function 'uart2_read':
+../Src/main.c:101:1: warning: control reaches end of non-void function [-Wreturn-type]
+  101 | }
+      | ^
+../Src/main.c: At top level:
+../Src/main.c:90:17: warning: 'compute_uart_bd' defined but not used [-Wunused-function]
+   90 | static uint16_t compute_uart_bd(uint32_t PeriphClk,uint32_t Baudrate)
+      |                 ^~~~~~~~~~~~~~~
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+
+09:39:55 Build Failed. 9 errors, 6 warnings. (took 201ms)
+

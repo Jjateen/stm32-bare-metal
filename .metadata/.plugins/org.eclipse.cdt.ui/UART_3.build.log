@@ -1,0 +1,44 @@
+10:41:05 **** Incremental Build of configuration Debug for project UART_3 ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F401RE -DSTM32 -DSTM32F401RETx -DSTM32F4 -c -I../Inc -I"C:/Users/jjate/OneDrive/Desktop/stm32/Include/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F401RE -DSTM32 -DSTM32F401RETx -DSTM32F4 -c -I../Inc -I"C:/Users/jjate/OneDrive/Desktop/stm32/Include/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DNUCLEO_F401RE -DSTM32 -DSTM32F401RETx -DSTM32F4 -c -I../Inc -I"C:/Users/jjate/OneDrive/Desktop/stm32/Include/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+In file included from ../Src/main.c:21:
+C:/Users/jjate/OneDrive/Desktop/stm32/Include/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:174:3: error: #error "Please select first the target STM32F4xx device used in your application (in stm32f4xx.h file)"
+  174 |  #error "Please select first the target STM32F4xx device used in your application (in stm32f4xx.h file)"
+      |   ^~~~~
+../Src/main.c:35:31: error: unknown type name 'USART_TypeDef'
+   35 | static void uart_set_baudrate(USART_TypeDef *USARTx,uint32_t PeriphClk,uint32_t Baudrate);
+      |                               ^~~~~~~~~~~~~
+../Src/main.c: In function 'uart2_tx_init':
+../Src/main.c:52:9: error: 'RCC' undeclared (first use in this function)
+   52 |         RCC->AHB1ENR |=GPIOAEN;
+      |         ^~~
+../Src/main.c:52:9: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:53:9: error: 'GPIOA' undeclared (first use in this function); did you mean 'GPIOAEN'?
+   53 |         GPIOA->MODER &=~(1U <<4);
+      |         ^~~~~
+      |         GPIOAEN
+../Src/main.c:61:1: warning: implicit declaration of function 'uart_set_baudrate' [-Wimplicit-function-declaration]
+   61 | uart_set_baudrate(USART2,APB1_CLK,UART_BAUDRATE);
+      | ^~~~~~~~~~~~~~~~~
+../Src/main.c:61:19: error: 'USART2' undeclared (first use in this function)
+   61 | uart_set_baudrate(USART2,APB1_CLK,UART_BAUDRATE);
+      |                   ^~~~~~
+../Src/main.c: In function 'uart2_write':
+../Src/main.c:77:17: error: 'USART2' undeclared (first use in this function)
+   77 |         while(!(USART2->SR  & SR_TXE)){}
+      |                 ^~~~~~
+../Src/main.c: At top level:
+../Src/main.c:80:31: error: unknown type name 'USART_TypeDef'
+   80 | static void uart_set_baudrate(USART_TypeDef *USARTx,uint32_t PeriphClk,uint32_t Baudrate)
+      |                               ^~~~~~~~~~~~~
+../Src/main.c:66:17: warning: 'compute_uart_bd' defined but not used [-Wunused-function]
+   66 | static uint16_t compute_uart_bd(uint32_t PeriphClk,uint32_t Baudrate)
+      |                 ^~~~~~~~~~~~~~~
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+
+10:41:06 Build Failed. 9 errors, 2 warnings. (took 533ms)
+

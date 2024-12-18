@@ -1,0 +1,55 @@
+#include "stm32f4xx.h"
+#include "stm32f4xx_hal.h"
+#include <stdio.h>
+
+#define GPIOAEN (1U << 0)
+#define USART2EN (1U << 17)
+#define APB1_CLK 16000000
+#define UART_BAUDRATE 9600
+
+void uart2_rxtx_init(void);
+void uart2_write(int ch);
+char uart2_read(void);
+static void uart_set_baudrate(USART_TypeDef *USARTx, uint32_t PeriphClk, uint32_t Baudrate);
+
+int main(void) {
+    uart2_rxtx_init();
+
+    while (1) {
+        char ch = uart2_read();
+        uart2_write(ch);  // Echo the received character
+        printf("Received: %c\n", ch);
+    }
+}
+
+void uart2_rxtx_init(void) {
+    // Enable GPIOA clock
+    RCC->AHB1ENR |= GPIOAEN;
+
+    // Set PA2 (TX) and PA3 (RX) to alternate function mode
+    GPIOA->MODER &= ~(1U << 4); // Clear PA2
+    GPIOA->MODER |= (1U << 5);  // Set PA2 to alternate function
+    GPIOA->MODER &= ~(1U << 6); // Clear PA3
+    GPIOA->MODER |= (1U << 7);  // Set PA3 to alternate function
+
+    // Set PA2 and PA3 to AF7 (USART2)
+    GPIOA->AFR[0] |= (7U << 8) | (7U << 12);
+
+    // Enable USART2 clock
+    RCC->APB1ENR |= USART2EN;
+
+    // Configure USART2
+    USART2->BRR = APB1_CLK / UART_BAUDRATE;  // Set baud rate
+    USART2->CR1 |= (1U << 3) | (1U << 2);    // Enable TX and RX
+    USART2->CR1 |= (1U << 13);               // Enable USART
+}
+
+void uart2_write(int ch) {
+    while (!(USART2->SR & (1U << 7))) {} // Wait for TXE
+    USART2->DR = (ch & 0xFF);
+}
+
+char uart2_read(void) {
+    while (!(USART2->SR & (1U << 5))) {} // Wait for RXNE
+    return (char)(USART2->DR & 0xFF);
+}

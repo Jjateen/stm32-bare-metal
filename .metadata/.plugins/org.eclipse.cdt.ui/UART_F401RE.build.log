@@ -1,0 +1,10 @@
+08:21:13 **** Incremental Build of configuration Debug for project UART_F401RE ****
+make -j12 all 
+arm-none-eabi-size  UART_F401RE.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5152	    124	   1900	   7176	   1c08	UART_F401RE.elf
+Finished building: default.size.stdout
+ 
+
+08:21:13 Build Finished. 0 errors, 0 warnings. (took 141ms)
+
