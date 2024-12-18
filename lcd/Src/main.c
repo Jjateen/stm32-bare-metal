@@ -4,7 +4,6 @@
 //PB7 -EN
 
 #include <stdint.h>
-
 uint32_t *pAHB1ENR = (uint32_t*) 0x40023830;
 uint32_t *pAPB2ENR = (uint32_t*) 0x40023844;
 uint32_t *pGPIOB_MODER = (uint32_t*) 0x40020400;
@@ -27,8 +26,6 @@ void delayMs(int delay);
 
 int main(void) {
 	LCD_Init();
-	/* Loop forever */
-
 	for (;;)
 		;
 }
@@ -48,7 +45,6 @@ void LCD_Command(unsigned char command) {
 	delayMs(0);
 	*pGPIOB_BSRR = EN << 16; //clear EN
 	//delayMs(30);
-
 }
 
 void LCD_Data(unsigned char data) {
@@ -60,7 +56,6 @@ void LCD_Data(unsigned char data) {
 	delayMs(30);
 	*pGPIOB_BSRR = EN << 16; //clear EN
 	delayMs(30);
-
 }
 
 void LCD_Init(void) {
@@ -86,13 +81,10 @@ void LCD_Init(void) {
 	delayMs(50);
 	LCD_Command(0xC0); //turn display
 	delayMs(20);
-
 }
 void delayMs(int delay) {
 	int i;
 	for (; delay > 0; delay--) {
-		for (i = 0; i < 3195; i++) {
-
-		}
+		for (i = 0; i < 3195; i++) {}
 	}
 }
