@@ -3,6 +3,10 @@
 #include <stdint.h>
 #include "stm32f4xx.h"
 
+//PB6 (TX) - ESP01 RX
+//PB7 (RX) - ESP01 TX
+//PA5 - Relay Din
+
 unsigned char command_basic_1[5] = "AT\r\n"; // BASIC
 unsigned char command_basic_2[9] = "AT+RST\r\n"; // BASIC
 unsigned char command_ESP_1[14] = "AT+CWMODE=1\r\n"; // WIFI
