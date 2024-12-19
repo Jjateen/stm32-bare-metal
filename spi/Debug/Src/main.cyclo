@@ -1,0 +1,10 @@
+../Src/main.c:40:6:adxl_init	1
+../Src/main.c:48:6:adxl_write	1
+../Src/main.c:58:6:adxl_read	1
+../Src/main.c:69:6:cs_enable	1
+../Src/main.c:72:6:cs_disable	1
+../Src/main.c:76:6:spi_config	1
+../Src/main.c:102:6:spi_gpio_init	1
+../Src/main.c:136:6:spi_transmit	5
+../Src/main.c:151:6:spi_receive	3
+../Src/main.c:162:5:main	1
